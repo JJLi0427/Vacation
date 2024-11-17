@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            PlaceList()
+        TabView {
+            Tab("Places", systemImage: "photo") {
+                PlaceList()
+            }
+            Tab("Trip History", systemImage: "chart.line.uptrend.xyaxis") {
+                TripsChart()
+            }
         }
-        .padding()
-        .enableInjection()
     }
 
     #if DEBUG
@@ -23,4 +27,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(Place.preview)
 }

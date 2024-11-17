@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct VacationApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(Place.preview)
         }
-        .modelContainer(for: Place.self)
     }
 }
 
