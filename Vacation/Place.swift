@@ -17,13 +17,18 @@ class Place {
     var latitude: Double
     var longitude: Double
     var interested: Bool
+    var imageData: Data?
     
     var location: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
     var image: Image {
-        Image(name.lowercased().replacingOccurrences(of: " ", with: ""))
+        if let imageData = imageData,
+           let uiImage = UIImage(data: imageData) {
+            return Image(uiImage: uiImage)
+        }
+        return Image(name.lowercased().replacingOccurrences(of: " ", with: ""))
     }
     
     init(name: String, latitude: Double, longitude: Double, interested: Bool) {

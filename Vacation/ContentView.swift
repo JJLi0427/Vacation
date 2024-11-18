@@ -14,8 +14,13 @@ struct ContentView: View {
             Tab("Places", systemImage: "photo") {
                 PlaceList()
             }
-            Tab("Trip History", systemImage: "chart.line.uptrend.xyaxis") {
-                TripsChart()
+            
+            Tab("Add", systemImage: "plus.circle") {
+                AddPlaceView()
+            }
+            
+            Tab("Budget", systemImage: "wallet.bifold") {
+                RatingChart()
             }
         }
     }

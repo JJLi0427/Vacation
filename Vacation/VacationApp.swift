@@ -10,11 +10,28 @@ import SwiftData
 
 @main
 struct VacationApp: App {
+    let container: ModelContainer
+    
+    init() {
+        do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: false)
+            container = try ModelContainer(for: Place.self, configurations: config)
+            
+            if try container.mainContext.fetch(FetchDescriptor<Place>()).isEmpty {
+                for place in Place.previewPlaces {
+                    container.mainContext.insert(place)
+                }
+            }
+        } catch {
+            fatalError("Could not initialize ModelContainer: \(error.localizedDescription)")
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(Place.preview)
         }
+        .modelContainer(container)
     }
 }
 
