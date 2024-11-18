@@ -25,6 +25,7 @@ struct AddPlaceView: View {
             )
         )
     )
+    @FocusState private var focusedField: Bool
     
     private var hasValidCoordinates: Bool {
         guard let lat = latitude, let lon = longitude else { return false }
@@ -38,8 +39,10 @@ struct AddPlaceView: View {
                     TextField("Name", text: $name)
                     TextField("Latitude", value: $latitude, format: .number)
                         .keyboardType(.decimalPad)
+                        .focused($focusedField)
                     TextField("Longitude", value: $longitude, format: .number)
                         .keyboardType(.decimalPad)
+                        .focused($focusedField)
                     Toggle("Interest", isOn: $interested)
                 }
 
@@ -74,6 +77,14 @@ struct AddPlaceView: View {
                     )
                     place.imageData = imageData
                     modelContext.insert(place)
+                    
+                    name = ""
+                    latitude = nil
+                    longitude = nil
+                    interested = false
+                    selectedItem = nil
+                    imageData = nil
+                    
                     dismiss()
                 }
                 .disabled(name.isEmpty)
@@ -83,6 +94,11 @@ struct AddPlaceView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
 
+                }
+                ToolbarItem(placement: .keyboard) {
+                    Button("Done") {
+                        focusedField = false
+                    }
                 }
             }
             .onChange(of: selectedItem) {

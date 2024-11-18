@@ -1,15 +1,9 @@
-//
-//  ContentView.swift
-//  Vacation
-//
-//  Created by 李佳骏 on 2024/11/13.
-//
-
 import SwiftUI
 import SwiftData
 import MapKit
 
 struct PlaceList: View {
+    @Environment(\.modelContext) private var modelContext
     @Query(sort: \Place.name) private var places: [Place]
     
     @State private var showImages = false
@@ -67,6 +61,12 @@ struct PlaceList: View {
                         place.interested.toggle()
                     }
                     .tint(place.interested ? .yellow : .gray)
+                    
+                    Button(role: .destructive) {
+                        modelContext.delete(place)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
                 }
             }
             .navigationTitle("Places")
