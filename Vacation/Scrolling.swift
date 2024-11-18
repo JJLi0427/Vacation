@@ -1,15 +1,15 @@
 import SwiftUI
+import SwiftData
 
 struct Scrolling: View {
+    @Query(sort: \Place.name) private var places: [Place]
+
     var body: some View {
         ScrollView {
             VStack {
-                Scrollimage(image: "bellagio")
-                Scrollimage(image: "excalibur")
-                Scrollimage(image: "luxor")
-                Scrollimage(image: "paris")
-                Scrollimage(image: "startosphere")
-                Scrollimage(image: "treasureisland")
+                ForEach(places) { place in
+                    Scrollimage(show: place.image)
+                }
             }
             .padding()
         }
@@ -23,4 +23,5 @@ struct Scrolling: View {
 
 #Preview {
     Scrolling()
+        .modelContainer(Place.preview)
 }

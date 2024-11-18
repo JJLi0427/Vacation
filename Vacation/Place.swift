@@ -1,10 +1,3 @@
-//
-//  Place.swift
-//  Vacation
-//
-//  Created by 李佳骏 on 2024/11/14.
-//
-
 import SwiftData
 import SwiftUI
 import MapKit
@@ -61,30 +54,11 @@ class Place {
                 interested: true
             ),
             Place(
-                name: "Paris", 
-                latitude: 36.1125, 
-                longitude: -115.1707, 
-                interested: true
-            ),
-            Place(
-                name: "Treasure Island", 
-                latitude: 36.1247, 
-                longitude: -115.1721, 
-                interested: false
-            ),
-            Place(
-                name: "Startosphere", 
+                name: "Startosphere",
                 latitude: 36.1475, 
                 longitude: -115.1566, 
                 interested: false
-            ),
-            Place(
-                name: "Luxor", 
-                latitude: 36.0955, 
-                longitude: -115.1761, 
-                interested: false
-            ),
-            Place(
+            ),            Place(
                 name: "Excalibur", 
                 latitude: 36.0988, 
                 longitude: -115.1754, 

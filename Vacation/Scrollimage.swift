@@ -1,10 +1,11 @@
 import SwiftUI
+import SwiftData
 
 struct Scrollimage: View {
-    let image: String
+    let show: Image
     
     var body: some View {
-        Image(image)
+        show
             .resizable()
             .scaledToFit()
             .clipShape(.rect(cornerRadius: 20))
@@ -24,5 +25,5 @@ struct Scrollimage: View {
 }
 
 #Preview {
-    Scrollimage(image: "bellagio")
+    Scrollimage(show: Place.previewPlaces[0].image)
 }
